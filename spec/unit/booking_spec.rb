@@ -46,10 +46,11 @@ describe Booking do
     it 'retrieves all requests made by a specific user' do
       described_class.create(check_in: Date.today.to_s, booked: false,
                              space_id: space.id, user_id: test_user.id)
-      result = described_class.retrieve_requests_made(user_id: test_user.id)
-      expect(result[0]['user_id']).to eq(test_user.id)
-      expect(result[0]['name']).to eq('Hidden Gem of Beverly Hills')
-      expect(result[0]['check_in']).to eq(Date.today.to_s)
+      request_made = described_class.retrieve_requests_made(user_id: test_user.id).first
+
+      expect(request_made['host_name']).to eq(test_user.name)
+      expect(request_made['check_in']).to eq(Date.today.to_s)
+      expect(request_made['name']).to eq('Hidden Gem of Beverly Hills')
     end
   end
 

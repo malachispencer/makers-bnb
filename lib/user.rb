@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'bcrypt'
 require_relative './database_connection'
 
@@ -33,6 +31,20 @@ class User
     ).first
 
     User.new(id: result['id'], name: result['name'], email: result['email'])
+  end
+
+  def self.find_by_email(email:)
+    result = DatabaseConnection.query(
+      "SELECT * FROM users WHERE email = '#{email}';"
+    ).first
+
+    return nil if !result
+
+    User.new(
+      id: result['id'],
+      name: result['name'],
+      email: result['email']
+    )
   end
 
   def self.authenticate(email:, password:)

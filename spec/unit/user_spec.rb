@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 describe User do
   describe '.create' do
     it 'wraps user info in a User object' do
@@ -47,6 +45,23 @@ describe User do
       authenticated_user = User.authenticate(email: 'm.spencer@makers.com', password: 'a20201124')
 
       expect(authenticated_user).to eq nil
+    end
+  end
+
+  describe '.find_by_email' do
+    it 'returns nil if no user with this email exists' do
+      found_user = User.find_by_email(email: 'm.spencer@makers.com')
+
+      expect(found_user).to be_nil
+    end
+
+    it 'returns user if user found' do
+      User.create(name: 'Malachi', email: 'm.spencer@makers.com', password: '2020')
+
+      found_user = User.find_by_email(email: 'm.spencer@makers.com')
+
+      expect(found_user.name).to eq('Malachi')
+      expect(found_user.email).to eq('m.spencer@makers.com')
     end
   end
 end

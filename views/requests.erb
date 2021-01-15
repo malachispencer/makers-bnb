@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= erb :head_css %>
+
+</head>
+<body>
+<%= erb :header %>
+<%= erb :navbar %>
+    <main>
+      <section class="requests-made">
+        <p>
+          <h3 align="center">
+            Requests Made
+          </h3>
+        </p>
+        <div id="master" style="width: 90%; margin: 0 auto;">
+          <div class="row">
+            <% @requests_made.each do |request| %>
+              <div class="col-sm-6">
+                <div class="card" style="margin-bottom: 30px;">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= request['name'] %></h5>
+                    <p class="card-text"><%= request['check_in'] %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </section>
+      <section class="requests-received">
+        <p>
+        <h3 align="center">
+          Requests Received
+        </h3>
+        </p>
+        <div id="master" style="width: 90%; margin: 0 auto;">
+          <div class="row">
+            <% @requests_received.each do |request| %>
+            <div class="col-sm-6">
+              <div class="card" style="margin-bottom: 30px;">
+                <div class="card-body">
+                    <h5 class="card-title"><%= request['name'] %></h5>
+                    <p class="card-text"><%= request['check_in'] %></p>
+                    <form action="/requests/<%= request['id'] %>" method="post">
+                      <input type="hidden" name="_method" value="PATCH">
+                      <input type="submit" value="Confirm Booking" class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;">
+                    </form><br>
+                    <form action="/requests/<%= request['id'] %>" method="post">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <input type="submit" value="Reject Booking" class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;">
+                    </form>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </section><br>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= erb :head_css %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @user.name %> 's Dashboard</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+
+  <%= erb :header %>
+  <%= erb :navbar %>
+<h3 align="center"> Welcome, <%= @user.name %> </h3>
+<br>
+  <section class="select-date" align="center">
+    <form action="/listings/results" method="post">
+      <div class="container">
+        <div class="panel panel-primary" align="center" style="border: 1px solid #20B2AA">
+          <div class="panel-heading" style="background-color: #20B2AA; border-bottom: 1px solid #20B2AA">Select your Check In date</div>
+          <div class="panel-body" align="center">
+            <div class="row">
+              <div class='col-md-6 center-block'>
+                <div class="form-group">
+                  <label class="control-label">Check In Date</label>
+                  <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" name="check_in_date" required/>
+                    <span class="input-group-addon">
+                     <span class="glyphicon glyphicon-calendar"></span>
+                     </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Search Properties" style="background-color: #20B2AA; border: 1px solid #20B2AA">
+          </div>
+        </div>
+      </div>
+      <script>
+          $(function () {
+              $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD'});
+          });
+      </script>
+    </form>
+  </section><br><br>
+  <section class="list-all-properties">
+
+      <h5 align="center">
+        Do you want to see all available properties regardless of the check-in date? Click <a href="/listings_all">here</a>.
+      </h5>
+  </section>
+</body>

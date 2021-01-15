@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= erb :head_css %>
+
+</head>
+<body>
+<%= erb :header %>
+<%= erb :navbar %>
+
+<main>
+  <section class="confirmed-bookings-guest">
+    <p>
+    <h3 align="center">
+      Confirmed Bookings as Guest
+    </h3>
+    </p>
+    <div id="master" style="width: 90%; margin: 0 auto;">
+      <div class="row">
+        <% @bookings_guest.each do |booking| %>
+          <div class="col-sm-6">
+            <div class="card" style="margin-bottom: 30px;">
+              <div class="card-body">
+                  <h5 class="card-title"><%= booking['name'] %></h5>
+                  <p class="card-text"><%= booking['check_in']%></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <section class="requests-received">
+    <p>
+      <h3 align="center">
+        Confirmed Bookings as Host
+      </h3>
+    </p>
+    <div id="master" style="width: 90%; margin: 0 auto;">
+      <div class="row">
+        <% @bookings_host.each do |booking| %>
+          <div class="col-sm-6">
+            <div class="card" style="margin-bottom: 30px;">
+              <div class="card-body">
+                <h5 class="card-title"><%= booking['name'] %></h5>
+                <p class="card-text"><%= booking['check_in'] %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section><br>
+</main>
+</body>
+</html>

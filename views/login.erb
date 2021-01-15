@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login to Makers BnB</title>
+
+  <%= erb :head_css %>
+
+</head>
+<body>
+  <%= erb :header %>
+  <div class="text-center mb-4">
+    <br><%= flash[:notice] %>
+    <!-- <h5>Sign Up</h5> -->
+    <h5>Login to Makers BnB</h5>
+  </div>
+  <div >
+<!--    <h3> <%#= flash[:notice] %>-->
+    <form action="/sessions" method="post" class="form-signin" style="width: 400px; margin: 0 auto;">
+      <div class="form-label-group">
+      <input type="email" name="email" class="form-control" placeholder="email" required autofocus>
+      </div>
+      <br>
+      <div class="form-label-group">
+      <input type="password" name="password" class="form-control" placeholder="password" autocomplete="off">
+      </div>
+      <br>
+      <div class="form-label-group">
+      <input type="submit" class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;" value="Login">
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <p align="center">Don't have an account? Sign up <a href="/">here</a> </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+Documentation:
+  Enabled: false
+Allcops:
+  Excludes:
+    - db/**
+    - config/**
+    - script/**

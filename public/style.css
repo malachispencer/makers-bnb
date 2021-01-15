@@ -1,0 +1,23 @@
+body { margin: 0; padding: 0;}
+
+/* unvisited link */
+a:link {
+    color: #20B2AA !important;
+}
+
+/* visited link */
+a:visited {
+    color: #20B2AA !important;
+}
+
+/* mouse over link */
+a:hover {
+    color: #20B2AA !important;
+}
+
+/* selected link */
+a:active {
+    color: #20B2AA !important;
+}
+
+#navbar> li {display: inline-block;}

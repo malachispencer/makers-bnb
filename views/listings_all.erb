@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= erb :head_css %>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+<%= erb :header %>
+<%= erb :navbar %>
+<header>
+  <br>
+  <h3 align="center">
+    MakersBnB Spaces
+  </h3><br>
+</header>
+
+<main>
+  <div id="master" style="width: 90%; margin: 0 auto;">
+    <div class="row">
+      <% @listings.each do |entry| %>
+        <div class="col-sm-6">
+          <div class="card" style="margin-bottom: 30px;">
+            <div class="card-body">
+              <ul>
+                <h5 class="card-title"><%= entry.name %></h5>
+                <p class="card-text"><%= entry.description %></p>
+                <p class="card-text">Location: <%= entry.location %>
+                  <br>Price: £<%= entry.price %>
+                  <% user = User.find(id: entry.user_id) %>
+                  <br>Host: <%= user.name %></p>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>
+</body>
+</html>

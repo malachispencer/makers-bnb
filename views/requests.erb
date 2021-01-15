@@ -23,7 +23,13 @@
                 <div class="card" style="margin-bottom: 30px;">
                   <div class="card-body">
                     <h5 class="card-title"><%= request['name'] %></h5>
-                    <p class="card-text"><%= request['check_in'] %></p>
+                    <p class="card-text"><%= request['description'] %></p>
+                    <p class="card-text">
+                      Location: <%= request['location'] %><br>
+                      Price: £<%= request['price'] %><br>
+                      Check In Date: <%= request['check_in'] %><br>
+                      Host: <%= request['host_name'] %>
+                    </p>
                   </div>
                 </div>
               </div>

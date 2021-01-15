@@ -1,19 +1,24 @@
-# frozen_string_literal: true
-
 class MakersBnB < Sinatra::Base
   get '/users/new' do
-    erb(:sign_up)
+    erb(:index)
   end
 
   post '/users' do
-    user = User.create(
-      name: params['name'],
-      email: params['email'],
-      password: params['password']
-    )
+    found_user = User.find_by_email(email: params['email'])
 
-    session[:user_id] = user.id
-    redirect('/dashboard')
+    if found_user
+      flash[:notice] = 'Email already registered'
+      redirect('users/new')
+    else
+      user = User.create(
+        name: params['name'],
+        email: params['email'],
+        password: params['password']
+      )
+
+      session[:user_id] = user.id
+      redirect('/dashboard')
+    end
   end
 
   get '/sessions/new' do

@@ -13,7 +13,11 @@
       <h3 align="center">
         MakersBnB Spaces
       </h3><br>
-      <h4 align="center">Spaces available for <%= @date %></h4>
+      <% if @date %>
+        <h4 align="center">Spaces available for <%= @date %></h4>
+      <% else %>
+        <h4 align="center">Spaces available</h4>
+      <% end %>
     </header>
 
     <main>

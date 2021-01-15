@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative '../lib/user'
 
 class MakersBnB < Sinatra::Base
@@ -20,7 +18,13 @@ class MakersBnB < Sinatra::Base
 
   get '/dashboard' do
     @user = User.find(id: session[:user_id])
-    @date = session[:check_in_date]
-    erb(:dashboard)
+
+    if @user 
+      @date = session[:check_in_date]
+      erb(:dashboard)
+    else
+      flash[:notice] = 'Please login to view dashboard'
+      redirect('/sessions/new')
+    end
   end
 end

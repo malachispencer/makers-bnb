@@ -102,4 +102,18 @@ class Space
       result['user_id']
     )
   end
+
+  def self.already_requested?(space_id:, user_id:)
+    sql = "
+      SELECT space_id 
+      FROM bookings
+      WHERE user_id = '#{user_id}'
+      AND booked = FALSE
+      AND space_id = '#{space_id}';
+    "
+
+    result = DatabaseConnection.query(sql).first
+
+    !result.nil?
+  end
 end

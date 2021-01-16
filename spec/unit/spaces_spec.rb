@@ -107,4 +107,47 @@ describe Space do
       expect(found_space.id).to eq(space.id)
     end
   end
+
+  describe '.already_requested?' do
+    it 'returns true is user has already requested space on date' do
+      space = Space.create(
+        name: 'Ealing Flat',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 150,
+        user_id: host.id
+      )
+
+      Booking.create(
+        check_in: today,
+        booked: false, 
+        space_id: space.id, 
+        user_id: guest.id
+      )
+
+      requested = Space.already_requested?(
+        space_id: space.id, 
+        user_id: guest.id
+      )
+
+      expect(requested).to eq(true)
+    end
+
+    it 'returns false if user has not already requested space on date' do
+      space = Space.create(
+        name: 'Ealing Flat',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 150,
+        user_id: host.id
+      )
+    
+      requested = Space.already_requested?(
+        space_id: space.id, 
+        user_id: guest.id
+      )
+
+      expect(requested).to eq(false)
+    end
+  end
 end

@@ -32,8 +32,8 @@ describe Space do
     end
   end
 
-  describe '.retrieve_available' do
-    it 'returns all spaces from database if no date given' do
+  describe '.all' do
+    it 'returns all spaces from the database' do
       Space.create(
         name: 'Ealing Flat',
         description: 'Studio apartment',
@@ -50,17 +50,16 @@ describe Space do
         user_id: guest.id
       )
 
-      results = Space.retrieve_available(
-        user_id: guest.id,
-        date: nil
-      )
-
-      expect(results[0][:space].name).to eq('Ealing Flat')
-      expect(results[0][:host_name]).to eq('ai')
-      expect(results[1][:space].name).to eq('Richmond House')
-      expect(results[1][:host_name]).to eq('Malachi')
+      results = Space.all
+      
+      expect(results[0][:space].name).to eq('Richmond House')
+      expect(results[0][:host_name]).to eq('Malachi')
+      expect(results[1][:space].name).to eq('Ealing Flat')
+      expect(results[1][:host_name]).to eq('ai')
     end
+  end
 
+  describe '.retrieve_available' do
     it 'returns all listings that are not booked on a specified date' do
       booked_space = Space.create(
         description: 'A luxurious villa in Beverly Hills', 
@@ -103,7 +102,7 @@ describe Space do
       )
 
       found_space = Space.find_by_id(id: space.id)
-      
+
       expect(found_space.name).to eq(space.name)
       expect(found_space.id).to eq(space.id)
     end

@@ -1,11 +1,21 @@
-# frozen_string_literal: true
-
 describe Booking do
-  let(:test_user) { User.create(name: 'Jane Doe', email: 'jane_doe@gmail.com', password: '12345qwerty') }
-  let(:space) do
-    Space.create(description: 'A luxurious villa in Beverly Hills', name: 'Hidden Gem of Beverly Hills',
-                 location: 'Los Angeles, Beverly Hills', price: 300, user_id: test_user.id)
-  end
+  let(:test_user) { 
+    User.create(
+      name: 'Jane Doe', 
+      email: 'jane_doe@gmail.com', 
+      password: '12345qwerty'
+    ) 
+  }
+
+  let(:space) {
+    Space.create(
+      name: 'Hidden Gem of Beverly Hills',
+      description: 'A luxurious villa in Beverly Hills',
+      location: 'Los Angeles, Beverly Hills', 
+      price: 300, 
+      user_id: test_user.id
+    )
+  }
 
   context '.create' do
     it 'is called on the Booking class' do
@@ -39,10 +49,6 @@ describe Booking do
   end
 
   describe '.retrieve_requests_made' do
-    it 'is called on the Booking class' do
-      expect(described_class).to respond_to(:retrieve_requests_made).with_keywords(:user_id)
-    end
-
     it 'retrieves all requests made by a specific user' do
       described_class.create(check_in: Date.today.to_s, booked: false,
                              space_id: space.id, user_id: test_user.id)
@@ -55,16 +61,18 @@ describe Booking do
   end
 
   describe '.retrieve_requests_received' do
-    it 'is called on the Booking class' do
-      expect(described_class).to respond_to(:retrieve_requests_received).with_keywords(:host_id)
-    end
-
     it 'retrieves all requests received' do
-      described_class.create(check_in: Date.today.to_s, booked: false,
-                             space_id: space.id, user_id: test_user.id)
-      result = described_class.retrieve_requests_received(host_id: space.user_id)
-      expect(result[0]['user_id']).to eq(space.user_id)
-      expect(result[0]['name']).to eq('Hidden Gem of Beverly Hills')
+      Booking.create(
+        check_in: Date.today.to_s, 
+        booked: false,
+        space_id: space.id, 
+        user_id: test_user.id
+      )
+
+      result = Booking.retrieve_requests_received(user_id: space.user_id).first
+
+      expect(result['guest_name']).to eq(test_user.name)
+      expect(result['name']).to eq('Hidden Gem of Beverly Hills')
     end
   end
 

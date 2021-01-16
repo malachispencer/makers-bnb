@@ -42,8 +42,19 @@ class Booking
     )
   end
 
-  def self.retrieve_requests_received(host_id:)
-    DatabaseConnection.query("SELECT bookings.id, bookings.user_id, bookings.check_in, spaces.name, spaces.user_id FROM bookings JOIN spaces ON (space_id = spaces.id) WHERE space_id IN (SELECT id FROM spaces WHERE user_id='#{host_id}') AND booked=FALSE;")
+  def self.retrieve_requests_received(user_id:)
+    DatabaseConnection.query(
+      "SELECT s.name, s.description, 
+       s.location, s.price, b.check_in, 
+       u.name AS guest_name, u.email
+       FROM spaces AS s
+       INNER JOIN bookings AS b
+       ON b.space_id = s.id
+       INNER JOIN users AS u
+       ON b.user_id = u.id
+       WHERE s.user_id = '#{user_id}'
+       AND b.booked = FALSE;"
+    )
   end
 
   def self.confirm(booking_id:)

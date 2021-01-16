@@ -17,7 +17,7 @@ class MakersBnB < Sinatra::Base
 
     if @user
       @requests_made = Booking.retrieve_requests_made(user_id: session[:user_id])
-      @requests_received = Booking.retrieve_requests_received(host_id: session[:user_id])
+      @requests_received = Booking.retrieve_requests_received(user_id: session[:user_id])
       erb :requests
     else
       flash[:notice] = 'Please login to view requests'

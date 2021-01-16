@@ -50,7 +50,13 @@
               <div class="card" style="margin-bottom: 30px;">
                 <div class="card-body">
                     <h5 class="card-title"><%= request['name'] %></h5>
-                    <p class="card-text"><%= request['check_in'] %></p>
+                    <p class="card-text"><%= request['description'] %></p>
+                    <p class="card-text">
+                      Location: <%= request['location'] %><br>
+                      Price: £<%= request['price'] %><br>
+                      Check In Date: <%= request['check_in'] %><br>
+                      Guest: <%= request['guest_name'] %>
+                    </p>
                     <form action="/requests/<%= request['id'] %>" method="post">
                       <input type="hidden" name="_method" value="PATCH">
                       <input type="submit" value="Confirm Booking" class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;">

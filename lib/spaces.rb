@@ -69,7 +69,11 @@ class Space
         SELECT space_id
         FROM bookings
         WHERE (check_in = '#{date}' AND booked = TRUE)
-        OR (check_in = '#{date}' AND booked = FALSE AND user_id = '#{user_id}')
+        OR (
+          check_in = '#{date}' 
+          AND booked = FALSE 
+          AND user_id = '#{user_id}'
+        )
       );
     "
     results = DatabaseConnection.query(sql)

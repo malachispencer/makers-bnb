@@ -29,7 +29,7 @@ class Booking
 
   def self.retrieve_requests_made(user_id:)
     DatabaseConnection.query(
-      "SELECT s.name, s.description, 
+      "SELECT b.id, s.name, s.description, 
        s.location, s.price, b.check_in, 
        u.name AS host_name
        FROM spaces AS s
@@ -44,7 +44,7 @@ class Booking
 
   def self.retrieve_requests_received(user_id:)
     DatabaseConnection.query(
-      "SELECT s.name, s.description, 
+      "SELECT b.id, s.name, s.description,
        s.location, s.price, b.check_in, 
        u.name AS guest_name, u.email
        FROM spaces AS s
@@ -67,9 +67,21 @@ class Booking
 
   def self.retrieve_confirmed_bookings(host_or_guest:, user_id:)
     case host_or_guest
+
     when 'guest'
-      result = DatabaseConnection.query("SELECT * FROM bookings JOIN spaces ON (space_id = spaces.id)
-                                           WHERE bookings.user_id = '#{user_id}' AND booked=TRUE;")
+      result = DatabaseConnection.query(
+        "SELECT s.name, s.description, 
+         s.location, s.price, b.check_in, 
+         u.name AS host_name, 
+         u.email AS host_email
+         FROM bookings AS b
+         INNER JOIN spaces AS s
+         ON b.space_id = s.id
+         INNER JOIN users AS u
+         ON s.user_id = u.id
+         WHERE b.user_id = '#{user_id}' 
+         AND b.booked = TRUE;"
+      )
     when 'host'
       result = DatabaseConnection.query("SELECT bookings.id, bookings.user_id, bookings.check_in, spaces.name, spaces.user_id
                                         FROM bookings JOIN spaces ON (space_id = spaces.id)

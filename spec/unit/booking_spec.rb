@@ -104,22 +104,37 @@ describe Booking do
   end
 
   describe '.retrieve_confirmed_bookings' do
-    it 'is called on the Booking class' do
-      expect(described_class).to respond_to(:retrieve_confirmed_bookings).with_keywords(:host_or_guest, :user_id)
-    end
-
     it 'retrieves all confirmed bookings as guest' do
-      described_class.create(check_in: Date.today.to_s, booked: true,
-                             space_id: space.id, user_id: test_user.id)
-      result = Booking.retrieve_confirmed_bookings(host_or_guest: 'guest', user_id: test_user.id)
-      expect(result.first['user_id']).to eq(test_user.id)
+      Booking.create(
+        check_in: Date.today.to_s, 
+        booked: true,
+        space_id: space.id, 
+        user_id: test_user.id
+      )
+
+      result = Booking.retrieve_confirmed_bookings(
+        host_or_guest: 'guest', 
+        user_id: test_user.id
+      ).first
+
+      expect(result['host_name']).to eq(test_user.name)
+      expect(result['host_email']).to eq(test_user.email)
     end
 
     it 'retrieves all confirmed bookings as host' do
-      described_class.create(check_in: Date.today.to_s, booked: true,
-                             space_id: space.id, user_id: test_user.id)
-      result = Booking.retrieve_confirmed_bookings(host_or_guest: 'host', user_id: test_user.id)
-      expect(result.first['user_id']).to eq(test_user.id)
+      Booking.create(
+        check_in: Date.today.to_s, 
+        booked: true,
+        space_id: space.id, 
+        user_id: test_user.id
+      )
+
+      result = Booking.retrieve_confirmed_bookings(
+        host_or_guest: 'host', 
+        user_id: test_user.id
+      ).first
+
+      expect(result['user_id']).to eq(test_user.id)
     end
   end
 end

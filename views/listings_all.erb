@@ -11,24 +11,23 @@
 <header>
   <br>
   <h3 align="center">
-    MakersBnB Spaces
+    Listed Spaces
   </h3><br>
 </header>
 
 <main>
   <div id="master" style="width: 90%; margin: 0 auto;">
     <div class="row">
-      <% @listings.each do |entry| %>
+      <% @spaces.each do |space_hash| %>
         <div class="col-sm-6">
           <div class="card" style="margin-bottom: 30px;">
             <div class="card-body">
               <ul>
-                <h5 class="card-title"><%= entry.name %></h5>
-                <p class="card-text"><%= entry.description %></p>
-                <p class="card-text">Location: <%= entry.location %>
-                  <br>Price: £<%= entry.price %>
-                  <% user = User.find(id: entry.user_id) %>
-                  <br>Host: <%= user.name %></p>
+                <h5 class="card-title"><%= space_hash[:space].name %></h5>
+                <p class="card-text"><%= space_hash[:space].description %></p>
+                <p class="card-text">Location: <%= space_hash[:space].location %>
+                  <br>Price: £<%= space_hash[:space].price %>
+                  <br>Host: <%= space_hash[:host_name] %></p>
               </ul>
             </div>
           </div>

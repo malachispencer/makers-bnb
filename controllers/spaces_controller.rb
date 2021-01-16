@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative '../lib/spaces'
 require_relative '../lib/user'
 
@@ -9,7 +7,12 @@ class MakersBnB < Sinatra::Base
 
     if @user
       @date = session[:check_in_date]
-      @spaces = Space.retrieve_available(session[:check_in_date])
+      
+      @spaces = Space.retrieve_available(
+        user_id: session[:user_id], 
+        date: session[:check_in_date]
+      )
+
       erb :listings
     else
       flash[:notice] = 'Please log in to view listings'
@@ -36,7 +39,8 @@ class MakersBnB < Sinatra::Base
       price: params[:property_price],
       user_id: session[:user_id]
     )
-    redirect('/listings')
+
+    redirect('/listings_all')
   end
 
   post '/listings/results' do
@@ -45,7 +49,8 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/listings_all' do
-    @listings = Space.retrieve_available
+    @spaces = Space.all
+
     erb :listings_all
   end
 end

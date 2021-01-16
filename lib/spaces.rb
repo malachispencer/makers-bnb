@@ -24,15 +24,49 @@ class Space
               result[0]['user_id'])
   end
 
-  def self.retrieve_available(date = nil)
-    result = if date.nil?
-               DatabaseConnection.query('SELECT * FROM spaces;')
-             else
-               DatabaseConnection.query("SELECT * FROM spaces WHERE id NOT IN ( SELECT space_id FROM bookings
-                                        WHERE check_in = '#{date}' AND booked = TRUE);")
-             end
-    result.map do |entry|
-      Space.new(entry['id'], entry['name'], entry['description'], entry['location'], entry['price'], entry['user_id'])
+  def self.retrieve_available(user_id:, date:)
+    no_date_sql = "
+      SELECT s.id, s.name, 
+      s.description, s.location, 
+      s.price, s.user_id, 
+      u.name AS host_name
+      FROM spaces AS s
+      INNER JOIN users AS u
+      ON s.user_id = u.id;
+    "
+
+    date_sql = "
+      SELECT s.id, s.name, 
+      s.description, s.location, 
+      s.price, s.user_id, 
+      u.name AS host_name
+      FROM spaces AS s
+      INNER JOIN users AS u
+      ON s.user_id = u.id
+      WHERE s.user_id != '#{user_id}'
+      AND s.id NOT IN (
+        SELECT space_id
+        FROM bookings
+        WHERE check_in = '#{date}'
+        AND booked = TRUE
+      );
+    "
+
+    sql = date ? date_sql : no_date_sql
+
+    results = DatabaseConnection.query(sql)
+
+    results.map do |result|
+      space = Space.new(
+        result['id'], 
+        result['name'], 
+        result['description'], 
+        result['location'], 
+        result['price'], 
+        result['user_id']
+      )
+
+      { space: space, host_name: result['host_name'] }
     end
   end
 

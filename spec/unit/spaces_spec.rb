@@ -89,6 +89,37 @@ describe Space do
       expect(results[0][:space].name).to eq('Ealing Flat')
       expect(results[0][:host_name]).to eq('ai')
     end
+
+    it 'does not return space user has already requested on date' do
+      requested_space = Space.create(
+        name: 'Richmond House',
+        description: 'Marvellous 4 bedroom home',
+        location: 'Richmond, London, UK',
+        price: 300,
+        user_id: host.id
+      )
+
+      Booking.create(
+        check_in: today,
+        booked: false, 
+        space_id: requested_space.id, 
+        user_id: guest.id
+      )
+
+      not_requested_space = Space.create(
+        name: 'Ealing Flat',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 150,
+        user_id: host.id
+      )
+
+      results = Space.retrieve_available(user_id: guest.id, date: today)
+
+      expect(results.length).to eq(1)
+      expect(results[0][:space].name).to eq(not_requested_space.name)
+      expect(results[0][:host_name]).to eq(host.name)
+    end
   end
 
   describe '.find_by_id' do
@@ -105,49 +136,6 @@ describe Space do
 
       expect(found_space.name).to eq(space.name)
       expect(found_space.id).to eq(space.id)
-    end
-  end
-
-  describe '.already_requested?' do
-    it 'returns true is user has already requested space on date' do
-      space = Space.create(
-        name: 'Ealing Flat',
-        description: 'Studio apartment',
-        location: 'Ealing, London, UK',
-        price: 150,
-        user_id: host.id
-      )
-
-      Booking.create(
-        check_in: today,
-        booked: false, 
-        space_id: space.id, 
-        user_id: guest.id
-      )
-
-      requested = Space.already_requested?(
-        space_id: space.id, 
-        user_id: guest.id
-      )
-
-      expect(requested).to eq(true)
-    end
-
-    it 'returns false if user has not already requested space on date' do
-      space = Space.create(
-        name: 'Ealing Flat',
-        description: 'Studio apartment',
-        location: 'Ealing, London, UK',
-        price: 150,
-        user_id: host.id
-      )
-    
-      requested = Space.already_requested?(
-        space_id: space.id, 
-        user_id: guest.id
-      )
-
-      expect(requested).to eq(false)
     end
   end
 end

@@ -68,8 +68,8 @@ class Space
       AND s.id NOT IN (
         SELECT space_id
         FROM bookings
-        WHERE check_in = '#{date}'
-        AND booked = TRUE
+        WHERE (check_in = '#{date}' AND booked = TRUE)
+        OR (check_in = '#{date}' AND booked = FALSE AND user_id = '#{user_id}')
       );
     "
     results = DatabaseConnection.query(sql)
@@ -101,19 +101,5 @@ class Space
       result['price'],
       result['user_id']
     )
-  end
-
-  def self.already_requested?(space_id:, user_id:)
-    sql = "
-      SELECT space_id 
-      FROM bookings
-      WHERE user_id = '#{user_id}'
-      AND booked = FALSE
-      AND space_id = '#{space_id}';
-    "
-
-    result = DatabaseConnection.query(sql).first
-
-    !result.nil?
   end
 end

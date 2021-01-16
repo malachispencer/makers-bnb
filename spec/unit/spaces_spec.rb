@@ -18,15 +18,17 @@ describe Space do
   let(:today) { Date.today.to_s }
 
   describe '.create' do
-    xit 'inserts its arguments into the spaces table' do
-      result = Space.create(description: 'A luxurious villa in Beverly Hills', name: 'Hidden Gem of Beverly Hills',
-                            location: 'Los Angeles, Beverly Hills', price: 300, user_id: test_user.id)
-      expect(result).to be_instance_of(described_class)
-      expect(result.name).to eq('Hidden Gem of Beverly Hills')
-      expect(result.description).to eq('A luxurious villa in Beverly Hills')
-      expect(result.location).to eq('Los Angeles, Beverly Hills')
-      expect(result.price).to eq(300)
-      expect(result.user_id).to eq(test_user.id)
+    it 'adds space to database and returns that space' do
+      space = Space.create(
+        name: 'Ealing Flat',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 150,
+        user_id: host.id
+      )
+
+      expect(space.name).to eq('Ealing Flat')
+      expect(space.user_id).to eq(host.id)
     end
   end
 
@@ -91,15 +93,18 @@ describe Space do
   end
 
   describe '.find_by_id' do
-    xit 'returns a given space by id' do
+    it 'returns a given space by id' do
       space = Space.create(
-        description: 'A luxurious villa in Beverly Hills',
-        name: 'Hidden Gem of Beverly Hills',
-        location: 'Los Angeles, Beverly Hills',
-        price: 300,
-        user_id: test_user.id
+        name: 'Ealing Flat',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 150,
+        user_id: host.id
       )
+
       found_space = Space.find_by_id(id: space.id)
+      
+      expect(found_space.name).to eq(space.name)
       expect(found_space.id).to eq(space.id)
     end
   end

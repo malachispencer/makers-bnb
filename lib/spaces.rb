@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Space
   attr_reader :id, :name, :description, :location, :price, :user_id
 
@@ -13,15 +11,21 @@ class Space
   end
 
   def self.create(name:, description:, location:, price:, user_id:)
-    result = DatabaseConnection.query("INSERT INTO spaces (name, description, location, price, user_id)
-                              VALUES ('#{name}', '#{description}', '#{location}', #{price}, '#{user_id}')
-                              RETURNING id, name, description, location, price, user_id;")
-    Space.new(result[0]['id'],
-              result[0]['name'],
-              result[0]['description'],
-              result[0]['location'],
-              result[0]['price'],
-              result[0]['user_id'])
+    result = DatabaseConnection.query(
+      "INSERT INTO spaces 
+      (name, description, location, price, user_id)
+      VALUES ('#{name}', '#{description}', '#{location}', #{price}, '#{user_id}')
+      RETURNING id, name, description, location, price, user_id;"
+    ).first
+
+    Space.new(
+      result['id'],
+      result['name'],
+      result['description'],
+      result['location'],
+      result['price'],
+      result['user_id']
+    )
   end
 
   def self.retrieve_available(user_id:, date:)

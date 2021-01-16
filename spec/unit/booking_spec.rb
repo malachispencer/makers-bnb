@@ -134,7 +134,8 @@ describe Booking do
         user_id: test_user.id
       ).first
 
-      expect(result['user_id']).to eq(test_user.id)
+      expect(result['guest_name']).to eq(test_user.name)
+      expect(result['guest_email']).to eq(test_user.email)
     end
   end
 end

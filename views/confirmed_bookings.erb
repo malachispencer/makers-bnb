@@ -51,8 +51,15 @@
             <div class="card" style="margin-bottom: 30px;">
               <div class="card-body">
                 <h5 class="card-title"><%= booking['name'] %></h5>
-                <p class="card-text"><%= booking['check_in'] %></p>
-              </div>
+                <p class="card-text"><%= booking['description'] %></p>
+                <p class="card-text">
+                  Location: <%= booking['location'] %><br>
+                  Price: £<%= booking['price'] %><br>
+                  Check In Date: <%= booking['check_in'] %><br>
+                  Guest: <%= booking['guest_name'] %><br>
+                  Guest Email: <%= booking['guest_email'] %>
+                </p>
+            </div>
             </div>
           </div>
         <% end %>

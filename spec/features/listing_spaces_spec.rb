@@ -1,13 +1,12 @@
-# frozen_string_literal: true
-
-feature 'displaying spaces on MakersBnB' do
+feature 'displaying spaces' do
   let(:test_user) { User.create(name: 'Jane Doe', email: 'jane_doe@gmail.com', password: '12345qwerty') }
 
   scenario "displays 'Makers BnB Spaces' on /listings route" do
     login_to_dashboard
     click_link('here')
 
-    expect(page).to have_content('MakersBnB Spaces')
+    expect(current_path).to eq('/listings_all')
+    expect(page).to have_content('Listed Spaces')
   end
 
   scenario 'display the listings list on /listings route' do

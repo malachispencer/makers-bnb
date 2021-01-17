@@ -1,9 +1,10 @@
 <div id="header" style="font-family: Arial; background-color: #20B2AA; width: 100%; color: white; padding-top: 10px; padding-bottom: 10px; margin-top: 0px; ">
-  <% if @user != nil %>
-  <form action="/sessions/destroy" method="post" style="float: right; padding-right: 30px;">
-    <input type="submit" class="btn btn-primary" value="Log Out" style="background-color: #20B2AA; border: 0px;">
-  </form><% end %>
+  <% if @user %>
+    <form action="/sessions/destroy" method="post" style="float: right; padding-right: 30px;">
+      <input type="submit" class="btn btn-primary" value="Log Out" style="background-color: #20B2AA; border: 0px;">
+    </form>
+  <% end %>
   <div id="logo" style="width: 250px; margin: 0 auto;">
-  <h1 align="center">MakersBnB</h1>
+    <h1 align="center"><a href='/' style="text-decoration: none; color: #ffffff;">MakersBnB</a></h1>
   </div>
-</div><!-- // header -->
+</div>

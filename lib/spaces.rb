@@ -126,4 +126,27 @@ class Space
       )
     end
   end
+
+  def self.update(space_id:, name:, description:, location:, price:)
+    space = DatabaseConnection.query(
+      "UPDATE spaces
+      SET name = '#{name}', 
+      description = '#{description}', 
+      location = '#{location}', 
+      price = '#{price}'
+      WHERE id = '#{space_id}'
+      RETURNING id, name,
+      description, location,
+      price, user_id;"
+    ).first
+
+    Space.new(
+      space['id'],
+      space['name'],
+      space['description'],
+      space['location'],
+      space['price'],
+      space['user_id']
+    )
+  end
 end

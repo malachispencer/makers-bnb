@@ -165,4 +165,28 @@ describe Space do
       expect(spaces[1].name).to eq('Ealing Flat')
     end
   end
+
+  describe '.update' do
+    it 'updates the details of a space' do
+      space = Space.create(
+        name: 'Ealing Flat',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 150,
+        user_id: host.id
+      )
+
+      edited_space = Space.update(
+        space_id: space.id,
+        name: 'Stylish Ealing Apartment',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 175
+      )
+
+      expect(edited_space.id).to eq(space.id)
+      expect(edited_space.name).to eq('Stylish Ealing Apartment')
+      expect(edited_space.price).to eq(175)
+    end
+  end
 end

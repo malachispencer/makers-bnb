@@ -14,27 +14,27 @@
   <body>
     <%= erb :header %>
     <form action="/users" method="post" class="form-signin" style="width: 400px; margin: 0 auto;">
-  <div class="text-center mb-4">
-    <br><%= flash[:notice] %>
-    <h5>Join MakersBnB</h5>
-  </div>
+    <div class="text-center mb-4">
+      <br><%= flash[:notice] %>
+      <h5>Join MakersBnB</h5>
+    </div>
 
-  <div class="form-label-group">
-    <input type="text" name="name" class="form-control" placeholder="Enter your name" required autofocus>
-  </div>
+    <div class="form-label-group">
+      <input type="text" name="name" class="form-control" placeholder="Enter your name" required autofocus>
+    </div>
+  ​
+    <div class="form-label-group">
+      <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+    </div>
+  ​
+    <div class="form-label-group">
+      <input type="password" name="password" class="form-control" placeholder="Password" required>
+    </div>
 ​
-  <div class="form-label-group">
-    <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
-  </div>
-​
-  <div class="form-label-group">
-    <input type="password" name="password" class="form-control" placeholder="Password" required>
-  </div>
-​
-
-  <input class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;" type="submit" value="Submit">
-  <br><p align="center">Already have an account? <a href="/sessions/new">Login here</a></p>
-  <p class="mt-5 mb-3 text-muted text-center">&copy; 2020</p>
-</form>
+    <input class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;" type="submit" value="Submit">
+    <br>
+    <p align="center">New to MakersBnB? View our current <a href="/listings_all">listings</a></p>
+    <p align="center">Already have an account? <a href="/sessions/new">Login here</a> </p>
+  </form>
 </body>
 </html>

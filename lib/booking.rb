@@ -1,7 +1,7 @@
 class Booking
   attr_reader :id, :space_id, :user_id, :check_in, :booked
 
-  def initialize(check_in, booked = false, space_id, user_id, id)
+  def initialize(check_in, booked, space_id, user_id, id)
     @check_in = check_in
     @booked = booked
     @space_id = space_id.to_s

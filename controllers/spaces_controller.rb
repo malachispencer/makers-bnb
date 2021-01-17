@@ -72,4 +72,23 @@ class MakersBnB < Sinatra::Base
     flash[:notice] = 'Listing successfully removed'
     redirect('/listings/user')
   end
+
+  get '/listings/:space_id' do
+    @space = Space.find_by_id(id: params[:space_id])
+
+    erb(:update_space)
+  end
+
+  patch '/listings/:space_id' do
+    Space.update(
+      space_id: params[:space_id],
+      name: params[:property_name],
+      description: params[:property_description],
+      location: params[:property_location],
+      price: params[:property_price]
+    )
+
+    flash[:notice] = 'Successfully updated listing'
+    redirect('/listings/user')
+  end
 end

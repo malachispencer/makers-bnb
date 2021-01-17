@@ -14,17 +14,17 @@
 <br>
 <form action="/listings/new" method="POST" style="width: 400px; margin: 0 auto;">
 
-<input class="form-control" id="property_name" type="text" name="property_name" placeholder="Enter the name of your space">
+<input class="form-control" id="property_name" type="text" name="property_name" placeholder="Enter the name of your space" required>
 <br>
 
 <textarea class="form-control" id="property_description"  name="property_description" placeholder="Write a description. Sell your space to potential renters!"
-rows="4" cols="50"></textarea>
+rows="4" cols="50" required></textarea>
 <br>
 
-<input class="form-control" id="property_location" type="text" name="property_location" placeholder="Where is your space?">
+<input class="form-control" id="property_location" type="text" name="property_location" placeholder="Where is your space?" required>
 <br>
 
-<input class="form-control" id="property_price" type="text" name="property_price" placeholder="Set your nightly price">
+<input class="form-control" id="property_price" type="text" name="property_price" placeholder="Set your nightly price"required>
 <br>
 <input type="submit" class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;" value="Post">
 </form>

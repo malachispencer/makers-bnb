@@ -49,7 +49,7 @@ feature 'Authentication' do
 
     click_button 'Log Out'
 
-    expect(current_path).to eq '/'
+    expect(current_path).to eq('/sessions/new')
     expect(page).to have_content 'Succesfully Logged Out'
   end
 end

@@ -139,4 +139,30 @@ describe Space do
       expect(found_space.id).to eq(space.id)
     end
   end
+
+  describe '.all_by_user_id' do
+    it 'returns all spaces listed by a user' do
+      Space.create(
+        name: 'Ealing Flat',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 150,
+        user_id: host.id
+      )
+
+      Space.create(
+        name: 'Richmond House',
+        description: 'Marvellous 4 bedroom home',
+        location: 'Richmond, London, UK',
+        price: 300,
+        user_id: host.id
+      )
+
+      spaces = Space.all_by_user_id(user_id: host.id)
+
+      expect(spaces.length).to eq(2)
+      expect(spaces[0].name).to eq('Richmond House')
+      expect(spaces[1].name).to eq('Ealing Flat')
+    end
+  end
 end

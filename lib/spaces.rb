@@ -106,4 +106,24 @@ class Space
       result['user_id']
     )
   end
+
+  def self.all_by_user_id(user_id:)
+    spaces = DatabaseConnection.query(
+      "SELECT * 
+      FROM spaces 
+      WHERE user_id = '#{user_id}' 
+      ORDER BY id DESC;"
+    )
+
+    spaces.map do |space|
+      Space.new(
+        space['id'],
+        space['name'],
+        space['description'],
+        space['location'],
+        space['price'],
+        space['user_id']
+      )
+    end
+  end
 end

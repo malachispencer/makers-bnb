@@ -26,7 +26,7 @@ class Booking
     )
   end
 
-  def self.retrieve_booking
+  def self.all
     result = DatabaseConnection.query('SELECT * FROM bookings;')
 
     result.map do |booking|

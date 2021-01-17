@@ -60,7 +60,7 @@ describe Space do
   end
 
   describe '.retrieve_available' do
-    it 'returns all listings that are not booked on a specified date' do
+    it 'returns all spaces that are not booked on a specified date' do
       booked_space = Space.create(
         description: 'A luxurious villa in Beverly Hills', 
         name: 'Hidden Gem of Beverly Hills',
@@ -86,6 +86,7 @@ describe Space do
 
       results = Space.retrieve_available(user_id: guest.id, date: today)
 
+      expect(results.length).to eq(1)
       expect(results[0][:space].name).to eq('Ealing Flat')
       expect(results[0][:host_name]).to eq('ai')
     end

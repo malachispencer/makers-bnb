@@ -188,6 +188,46 @@ describe Space do
       expect(edited_space.name).to eq('Stylish Ealing Apartment')
       expect(edited_space.price).to eq(175)
     end
+
+    it 'handles strings with apostrophes' do
+      space = Space.create(
+        name: 'Ealing Flat',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 150,
+        user_id: host.id
+      )
+
+      edited_space = Space.update(
+        space_id: space.id,
+        name: "Malachi's Ealing Offering",
+        description: "Studio apartment in London's best borough",
+        location: 'Ealing, London, UK',
+        price: 175
+      )
+
+      expect(edited_space.name).to eq("Malachi's Ealing Offering")
+    end
+
+    it 'handles strings with double quotes' do
+      space = Space.create(
+        name: 'Ealing Flat',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 150,
+        user_id: host.id
+      )
+
+      edited_space = Space.update(
+        space_id: space.id,
+        name: '"Special" Flat in Ealing',
+        description: 'Studio apartment in the "best" borough of London',
+        location: 'Ealing, London, UK',
+        price: 175
+      )
+      
+      expect(edited_space.name).to eq('"Special" Flat in Ealing')
+    end
   end
 
   describe '.delete' do

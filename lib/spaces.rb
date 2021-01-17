@@ -11,6 +11,10 @@ class Space
   end
 
   def self.create(name:, description:, location:, price:, user_id:)
+    name = escape_apostrophes(name)
+    description = escape_apostrophes(description)
+    location = escape_apostrophes(location)
+
     result = DatabaseConnection.query(
       "INSERT INTO spaces 
       (name, description, location, price, user_id)
@@ -128,13 +132,17 @@ class Space
   end
 
   def self.update(space_id:, name:, description:, location:, price:)
+    name = escape_apostrophes(name)
+    description = escape_apostrophes(description)
+    location = escape_apostrophes(location)
+
     space = DatabaseConnection.query(
       "UPDATE spaces
       SET name = '#{name}', 
       description = '#{description}', 
       location = '#{location}', 
-      price = '#{price}'
-      WHERE id = '#{space_id}'
+      price = #{price}
+      WHERE id = #{space_id}
       RETURNING id, name,
       description, location,
       price, user_id;"
@@ -154,5 +162,11 @@ class Space
     DatabaseConnection.query(
       "DELETE FROM spaces WHERE id = '#{space_id}';"
     )
+  end
+
+  private
+
+  def self.escape_apostrophes(string)
+    string.gsub(/\'/, "''")
   end
 end

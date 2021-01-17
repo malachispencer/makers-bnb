@@ -149,4 +149,10 @@ class Space
       space['user_id']
     )
   end
+
+  def self.delete(space_id:)
+    DatabaseConnection.query(
+      "DELETE FROM spaces WHERE id = '#{space_id}';"
+    )
+  end
 end

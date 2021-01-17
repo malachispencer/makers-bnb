@@ -189,4 +189,24 @@ describe Space do
       expect(edited_space.price).to eq(175)
     end
   end
+
+  describe '.delete' do
+    it 'removes a Space from the database' do
+      space = Space.create(
+        name: 'Ealing Flat',
+        description: 'Studio apartment',
+        location: 'Ealing, London, UK',
+        price: 150,
+        user_id: host.id
+      )
+
+      Space.delete(space_id: space.id)
+
+      db_response = DatabaseConnection.query(
+        "SELECT * FROM spaces WHERE id = '#{space.id}';"
+      ).first
+
+      expect(db_response).to be_nil
+    end
+  end
 end

@@ -49,8 +49,9 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/listings_all' do
+    @user = User.find(id: session[:user_id])
     @spaces = Space.all
 
-    erb :listings_all
+    erb(:listings_all)
   end
 end

@@ -6,8 +6,10 @@
 </head>
 
 <body>
-<%= erb :header %>
-<%= erb :navbar %>
+  <%= erb :header %>
+  <% if @user %>
+    <%= erb :navbar %>
+  <% end %>
 <header>
   <br>
   <h3 align="center">
@@ -36,5 +38,10 @@
     </div>
   </div>
 </main>
+<% if !@user %>
+  <div>
+    <p align="center"><a href="/">Sign up</a> to book a space</p>
+  </div>
+<% end %>
 </body>
 </html>

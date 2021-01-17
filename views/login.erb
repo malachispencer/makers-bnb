@@ -12,11 +12,9 @@
   <%= erb :header %>
   <div class="text-center mb-4">
     <br><%= flash[:notice] %>
-    <!-- <h5>Sign Up</h5> -->
     <h5>Login to Makers BnB</h5>
   </div>
   <div >
-<!--    <h3> <%#= flash[:notice] %>-->
     <form action="/sessions" method="post" class="form-signin" style="width: 400px; margin: 0 auto;">
       <div class="form-label-group">
       <input type="email" name="email" class="form-control" placeholder="email" required autofocus>
@@ -33,6 +31,7 @@
   </div>
 
   <div>
+    <br>
     <p align="center">Don't have an account? Sign up <a href="/">here</a> </p>
   </div>
 </body>

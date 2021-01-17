@@ -17,6 +17,13 @@
       Confirmed Bookings as Guest
     </h3>
     </p>
+    <% if !@bookings_guest.first %>
+      <div class="card mt-4 mb-4" style="margin: 0 auto; width: 30%;">
+        <div class="card-body text-center">
+          No bookings confirmed yet
+        </div>
+      </div>
+    <% else %>
     <div id="master" style="width: 90%; margin: 0 auto;">
       <div class="row">
         <% @bookings_guest.each do |booking| %>
@@ -37,6 +44,7 @@
         </div>
       <% end %>
     </div>
+    <% end %>
   </section>
   <section class="requests-received">
     <p>
@@ -44,6 +52,13 @@
         Confirmed Bookings as Host
       </h3>
     </p>
+    <% if !@bookings_host.first %>
+      <div class="card mt-4 mb-4" style="margin: 0 auto; width: 30%;">
+        <div class="card-body text-center">
+          No bookings confirmed yet
+        </div>
+      </div>
+    <% else %>
     <div id="master" style="width: 90%; margin: 0 auto;">
       <div class="row">
         <% @bookings_host.each do |booking| %>
@@ -65,6 +80,7 @@
         <% end %>
       </div>
     </div>
+    <% end %>
   </section><br>
 </main>
 </body>

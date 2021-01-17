@@ -16,6 +16,13 @@
             Requests Made
           </h3>
         </p>
+        <% if !@requests_made.first %>
+          <div class="card mt-4 mb-4" style="margin: 0 auto; width: 30%;">
+            <div class="card-body text-center">
+              You have no pending requests
+            </div>
+          </div>
+        <% else %>
         <div id="master" style="width: 90%; margin: 0 auto;">
           <div class="row">
             <% @requests_made.each do |request| %>
@@ -36,6 +43,7 @@
             <% end %>
           </div>
         </div>
+        <% end %>
       </section>
       <section class="requests-received">
         <p>
@@ -43,6 +51,13 @@
           Requests Received
         </h3>
         </p>
+        <% if !@requests_made.first %>
+          <div class="card mt-4" style="margin: 0 auto; width: 30%;">
+            <div class="card-body text-center">
+              You have received no requests
+            </div>
+          </div>
+        <% else %>
         <div id="master" style="width: 90%; margin: 0 auto;">
           <div class="row">
             <% @requests_received.each do |request| %>
@@ -71,6 +86,7 @@
             <% end %>
           </div>
         </div>
+        <% end %>
       </section><br>
     </main>
   </body>

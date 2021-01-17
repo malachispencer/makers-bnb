@@ -54,4 +54,22 @@ class MakersBnB < Sinatra::Base
 
     erb(:listings_all)
   end
+
+  get '/listings/user' do
+    @user = User.find(id: session[:user_id])
+
+    if @user
+      @spaces_of_user = Space.all_by_user_id(user_id: @user.id)
+      erb(:listings_user)
+    else
+      flash[:notice] = 'Log in to access resource'
+      redirect('/sessions/new')
+    end
+  end
+
+  delete '/listings/:space_id' do
+    Space.delete(space_id: params[:space_id])
+    flash[:notice] = 'Listing successfully removed'
+    redirect('/listings/user')
+  end
 end

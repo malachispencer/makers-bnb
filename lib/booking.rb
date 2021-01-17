@@ -71,12 +71,21 @@ class Booking
   end
 
   def self.confirm(booking_id:)
-    DatabaseConnection.query(
+    booked = DatabaseConnection.query(
       "UPDATE bookings 
       SET booked = TRUE 
       WHERE id = '#{booking_id}' 
-      RETURNING booked;"
+      RETURNING check_in, space_id, booked;"
+    ).first
+
+    DatabaseConnection.query(
+      "DELETE FROM bookings
+      WHERE check_in = CAST('#{booked['check_in']}' AS DATE)
+      AND space_id = '#{booked['space_id']}'
+      AND booked = FALSE;"
     )
+
+    booked['booked']
   end
 
   def self.deny(booking_id:)

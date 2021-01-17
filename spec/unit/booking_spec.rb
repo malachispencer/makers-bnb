@@ -116,9 +116,37 @@ describe Booking do
         user_id: guest.id
       )
 
-      confirmation = Booking.confirm(booking_id: booking.id)
+      result = Booking.confirm(booking_id: booking.id)
 
-      expect(confirmation.first['booked']).to eq('t')
+      expect(result).to eq('t')
+    end
+
+    it 'deletes all other requests where space and date are same' do
+      booking_one = Booking.create(
+        check_in: today,
+        booked: false,
+        space_id: space.id,
+        user_id: guest.id
+      )
+
+      booking_two = Booking.create(
+        check_in: today,
+        booked: false,
+        space_id: space.id,
+        user_id: guest_two.id
+      )
+
+      Booking.confirm(booking_id: booking_one.id)
+
+      db_response = DatabaseConnection.query(
+        "SELECT * 
+        FROM bookings 
+        WHERE check_in = CAST('#{booking_one.check_in}' AS DATE)
+        AND space_id = '#{booking_one.space_id}'
+        AND booked = FALSE;"
+      ).first
+
+      expect(db_response).to be_nil
     end
   end
 

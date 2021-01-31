@@ -119,21 +119,16 @@ As such, we spent the whole of Monday and part of Tuesday planning and diagrammi
     <figcaption>RSpec Suite - Testing Results and Coverage</figcaption>
 </figure>
 
-## Sample pages of the Makers B'n'B App
+## Makers BnB Views
 
-#### Sign-Up Page
-<figure>
-    <img width="1541" alt="Screenshot 2020-11-27 at 14 57 15" src="https://user-images.githubusercontent.com/65397514/100461779-26a37500-30c1-11eb-8bb2-6381c10c5ce6.png">
-</figure>
+#### Sign Up Page
+
+<img width="1440" alt="Screenshot 2021-01-31 at 15 09 12" src="https://user-images.githubusercontent.com/71923215/106388485-a0642180-63d6-11eb-8f26-18bed7f0f4cc.png">
 
 #### User Dashboard
 
-<figure>
-    <img width="1542" alt="Screenshot 2020-11-27 at 14 57 36" src="https://user-images.githubusercontent.com/65397514/100461785-2905cf00-30c1-11eb-9794-a64128f9ba6f.png">
-</figure> 
+<img width="1440" alt="Screenshot 2021-01-31 at 14 53 57" src="https://user-images.githubusercontent.com/71923215/106388489-a4903f00-63d6-11eb-9270-932335f9977c.png">
 
-#### Properties / Listings
+#### Listings
 
-<figure>
-    <img width="1542" alt="Screenshot 2020-11-27 at 14 58 00" src="https://user-images.githubusercontent.com/65397514/100461792-2b682900-30c1-11eb-9a61-ac6835e8284d.png">
-</figure>
+<img width="1440" alt="Screenshot 2021-01-31 at 14 52 38" src="https://user-images.githubusercontent.com/71923215/106388491-a5c16c00-63d6-11eb-88d3-e86c5cf0b261.png">

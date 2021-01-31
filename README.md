@@ -116,7 +116,7 @@ As such, we spent the whole of Monday and part of Tuesday planning and diagrammi
 
 <figure>
     <img width="430" alt="Screenshot 2020-11-27 at 14 41 24" src="https://user-images.githubusercontent.com/65397514/100460388-ff4ba880-30be-11eb-8a92-b5498e44462e.png">
-    <figcaption>RSpec test suite (including coverage)</figcaption>
+    <figcaption><i>RSpec test suite (including coverage)</i></figcaption>
 </figure>
 
 ## Makers BnB Views

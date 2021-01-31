@@ -112,18 +112,18 @@ As such, we spent the whole of Monday and part of Tuesday planning and diagrammi
     <figcaption><i>Flowchart representing the initial planning for a simple workflow of a guest</i></figcaption>
 </figure>
 
-## Test Suite Coverage
+## Test Suite
 
 <figure>
     <img width="430" alt="Screenshot 2020-11-27 at 14 41 24" src="https://user-images.githubusercontent.com/65397514/100460388-ff4ba880-30be-11eb-8a92-b5498e44462e.png">
-    <figcaption>RSpec Suite - Testing Results and Coverage</figcaption>
+    <figcaption>RSpec test suite (including coverage)</figcaption>
 </figure>
 
 ## Makers BnB Views
 
 #### Sign Up Page
 
-<img width="1440" alt="Screenshot 2021-01-31 at 15 09 12" src="https://user-images.githubusercontent.com/71923215/106388485-a0642180-63d6-11eb-8f26-18bed7f0f4cc.png">
+<img width="1440" alt="Screenshot 2021-01-31 at 15 15 07" src="https://user-images.githubusercontent.com/71923215/106388593-24b6a480-63d7-11eb-9100-11e20c5e73c8.png">
 
 #### User Dashboard
 
@@ -131,4 +131,4 @@ As such, we spent the whole of Monday and part of Tuesday planning and diagrammi
 
 #### Listings
 
-<img width="1440" alt="Screenshot 2021-01-31 at 14 52 38" src="https://user-images.githubusercontent.com/71923215/106388491-a5c16c00-63d6-11eb-88d3-e86c5cf0b261.png">
+<img width="1440" alt="Screenshot 2021-01-31 at 15 09 12" src="https://user-images.githubusercontent.com/71923215/106388485-a0642180-63d6-11eb-8f26-18bed7f0f4cc.png">

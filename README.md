@@ -1,4 +1,14 @@
-# Makers B'n'B
+# Makers BnB
+
+Website where users can list or rent spaces.
+
+## Technologies Used
+
+|   | Technologies |
+|---|--------------|
+| **Front End** | HTML, CSS, Bootstrap, ERB |
+| **Back End** | Ruby, Sinatra |
+| **Testing** | Capybara, RSpec |
 
 ## Setting Up The Database
 
@@ -14,7 +24,7 @@
 2) Run ```rackup``` in the command line.
 3) Go to ```localhost:9292``` in Google Chrome or Mozilla Firefox.
 
-## Running the Tests
+## Running The Tests
 
 1) Ensure the test database is set up using the *Setting Up The Database* instructions above.
 1) Ensure you are in the project root on the command line.
@@ -22,23 +32,54 @@
 
 ## User Stories
 
-[Link to Trello User Stories Board](https://trello.com/b/fBNwccl8/user-stories)
+[Trello User Stories Board](https://trello.com/b/fBNwccl8/user-stories)
 
-- As a user, So that I can see all/list properties I would like to be able to sign up for Makers BNB
-- As a user, so that I can find a property, I would like to be able to see a list of all properties I can book
-- As a user, so that I can list a property, I would like to be able to become a 'host'
-- As a user, so that I can have a place to stay, I would like to be able book a property
-- As a user, so that I can confirm my booking, I would like to receive a confirmation from the host
-- As a host, so that I can manage all my properties, I would like to be able to add multiple properties
-- As a host, so a user can book my space, I would like to provide details about my space(description, price, location)
-- As a host, so that users can book my property, I would like to be able to approve the request
+```
+As a user
+so that I can see all/list properties 
+I would like to be able to sign up for Makers BNB
+```
+```
+As a user
+so that I can find a property, 
+I would like to be able to see a list of all properties I can book
+```
+```
+As a user, 
+so that I can list a property, 
+I would like to be able to become a 'host'
+```
+```
+As a user, 
+so that I can have a place to stay, 
+I would like to be able book a property
+```
+```
+As a user, 
+so that I can confirm my booking, 
+I would like to receive a confirmation from the host
+```
+```
+As a host, 
+so that I can manage all my properties, 
+I would like to be able to add multiple properties
+```
+```
+As a host, 
+so a user can book my space, 
+I would like to provide details about my space(description, price, location)
+```
+```
+As a host, 
+so that users can book my property, 
+I would like to be able to approve the request
+```
 
 ## Our Process
 
-As a team, we felt that in order to execute on the project efficiently, we needed a solid idea of what our vision for the project was. How would we go about building MakersBnB? What would the database architecture look like?<br>
-What pages did we need in order to meet the criteria in the user stories? Without having all of these questions - and many, many more - answered and agreed upon before we started to implement, our individual efforts may diverge quickly.<br>
-As such, we spent the whole of Monday and part of Tuesday planning and diagramming the backend of the project.<br>
-We felt it was important to keep things as simple as possible while ensuring that we met the specifications in the user stories. We kept our solution down to 3 classes and 3 database tables.
+As a team, we felt that in order to execute on the project efficiently, we needed a solid idea of what our vision for the project was. How would we go about building MakersBnB? What would the database architecture look like? What pages did we need in order to meet the criteria in the user stories? Without having all of these questions - and many, many more - answered and agreed upon before we started to implement, our individual efforts may diverge quickly.
+
+As such, we spent the whole of Monday and part of Tuesday planning and diagramming the backend of the project. We felt it was important to keep things as simple as possible while ensuring that we met the specifications in the user stories. We kept our solution down to 3 classes and 3 database tables.
 
 
 ## Model Diagrams
@@ -51,6 +92,7 @@ We felt it was important to keep things as simple as possible while ensuring tha
 </figure>
 
 #### Class Diagram
+
 <figure>
     <img width="1074" alt="Screenshot 2020-11-24 at 10 58 46" src="https://user-images.githubusercontent.com/65397514/100459237-0b366b00-30bd-11eb-8e54-a302d2d1017d.png"/>
     <figcaption><i>Initial Class Diagram created during the planning session, containing all three classes used.</i></figcaption>
@@ -70,7 +112,7 @@ We felt it was important to keep things as simple as possible while ensuring tha
     <figcaption><i>Flowchart representing the initial planning for a simple workflow of a guest</i></figcaption>
 </figure>
 
-## RSpec Testing Results and Coverage
+## Test Suite Coverage
 
 <figure>
     <img width="430" alt="Screenshot 2020-11-27 at 14 41 24" src="https://user-images.githubusercontent.com/65397514/100460388-ff4ba880-30be-11eb-8a92-b5498e44462e.png">

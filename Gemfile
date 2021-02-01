@@ -6,6 +6,8 @@ gem 'bcrypt'
 gem 'pg'
 gem 'sinatra'
 gem 'sinatra-flash'
+gem 'sinatra-activerecord'
+gem 'rake'
 
 group :development, :test do
   gem 'capybara'

@@ -17,32 +17,40 @@
     </div>
 
     <main>
-      <div id="master" style="width: 90%; margin: 0 auto;">
-        <div class="row">
-        <% @spaces_of_user.each do |space| %>
-            <div class="col-sm-6">
-              <div class="card" style="margin-bottom: 30px;">
-                <div class="card-body">
-                  <ul>
-                    <h5 class="card-title"><%= space.name %></h5>
-                    <p class="card-text"><%= space.description %></p>
-                    <p class="card-text">Location: <%= space.location %>
-                    <br>Price: £<%= space.price %>
-                    <form action="/listings/<%=space.id%>" method="get">
-                      <input type="submit" value="Edit Space" class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;">
-                    </form>
-                    <br>
-                    <form action="/listings/<%=space.id%>" method="post">
-                      <input type="hidden" name="_method" value="DELETE">
-                      <input type="submit" value="Remove Space" class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;">
-                    </form>
-                  </ul>
+      <% if @spaces_of_user.length == 0 %>
+        <div class="card mt-4 mb-4" style="margin: 0 auto; width: 30%;">
+          <div class="card-body text-center">
+            You have no listed spaces
+          </div>
+        </div>
+      <% else %>
+        <div id="master" style="width: 90%; margin: 0 auto;">
+          <div class="row">
+          <% @spaces_of_user.each do |space| %>
+              <div class="col-sm-6">
+                <div class="card" style="margin-bottom: 30px;">
+                  <div class="card-body">
+                    <ul>
+                      <h5 class="card-title"><%= space.name %></h5>
+                      <p class="card-text"><%= space.description %></p>
+                      <p class="card-text">Location: <%= space.location %>
+                      <br>Price: £<%= space.price %>
+                      <form action="/listings/<%=space.id%>" method="get">
+                        <input type="submit" value="Edit Space" class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;">
+                      </form>
+                      <br>
+                      <form action="/listings/<%=space.id%>" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="submit" value="Remove Space" class="btn btn-lg btn-primary btn-block" style="background-color: #20B2AA; border: 0px;">
+                      </form>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </main>
   </body>
 </html>

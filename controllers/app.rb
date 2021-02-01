@@ -1,7 +1,6 @@
-# frozen_string_literal: true
-
 require 'sinatra/base'
 require 'sinatra/flash'
+require 'sinatra/activerecord'
 require 'pg'
 require_relative '../lib/database_connection'
 require_relative './bookings_controller'

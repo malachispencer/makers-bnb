@@ -2,6 +2,6 @@ require_relative './lib/database_connection'
 
 if ENV['ENVIRONMENT'] == 'test'
   DatabaseConnection.setup(dbname: 'makers_bnb_test')
-else
+elsif ENV['ENVIRONMENT'] == 'development'
   DatabaseConnection.setup(dbname: 'makers_bnb')
 end

@@ -14,16 +14,12 @@ class DatabaseConnection
   def self.production_setup
     p 'IN PRODUCTION SETUP >>>>>>>>>>>>'
 
-    host = ENV['DATABASE_HOST']
-    database = ENV['DATABASE_NAME']
-    username = ENV['DATABASE_USER']
-    password = ENV['DATABASE_PASSWORD']
+    db_url = ENV['DATABASE_URL']
 
+    p db_url
+    p 'DB URL IS ABOVE >>>>>>>>>>>>>>'
     @connection = PG.connect(
-      user: username,
-      password: password,
-      dbname: database,
-      host: host
+      dbname: db_url
     )
   end
 

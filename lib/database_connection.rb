@@ -6,8 +6,6 @@ class DatabaseConnection
   end
 
   def self.production_setup
-    p 'IN PRODUCTION SETUP >>>>>>>>>>>>'
-
     db_url = ENV['DATABASE_URL']
     uri = URI.parse(db_url)
 

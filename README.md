@@ -10,6 +10,12 @@ Website where users can list or rent spaces.
 | **Back End** | Ruby, Sinatra |
 | **Testing** | Capybara, RSpec |
 
+## Usage
+
+1) Visit the [MakersBnB website](https://makersbnb-ms.herokuapp.com/).
+2) Curious to see what's on MakersBnB before signing up? Check out the inventory of listings with the link below the sign up form.
+3) To make a booking request, or list your own space, sign up!
+
 ## Setting Up The Database
 
 1) Connect to ```psql``` in the command line.

@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+#require 'uri'
 require 'pg'
 
 class DatabaseConnection
@@ -17,7 +16,15 @@ class DatabaseConnection
     db_url = ENV['DATABASE_URL']
 
     p db_url
-    p 'DB URL IS ABOVE >>>>>>>>>>>>>>'
+
+    uri = URI.parse(db_url)
+
+    p uri.hostname
+    p uri.port
+    p uri.user
+    p uri.password
+    p uri.path
+
     @connection = PG.connect(
       dbname: db_url
     )

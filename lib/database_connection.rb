@@ -14,19 +14,20 @@ class DatabaseConnection
     p 'IN PRODUCTION SETUP >>>>>>>>>>>>'
 
     db_url = ENV['DATABASE_URL']
-
-    p db_url
-
     uri = URI.parse(db_url)
 
-    p uri.hostname
-    p uri.port
-    p uri.user
-    p uri.password
-    p uri.path
+    host = uri.hostname
+    port = uri.port
+    db_name = uri.path[1..-1]
+    user = uri.user
+    password = uri.password
 
     @connection = PG.connect(
-      dbname: db_url
+      host: host,
+      port: port,
+      dbname: db_name,
+      user: user,
+      password: password
     )
   end
 

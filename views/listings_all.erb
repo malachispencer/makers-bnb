@@ -18,25 +18,33 @@
 </header>
 
 <main>
-  <div id="master" style="width: 90%; margin: 0 auto;">
-    <div class="row">
-      <% @spaces.each do |space_hash| %>
-        <div class="col-sm-6">
-          <div class="card" style="margin-bottom: 30px;">
-            <div class="card-body">
-              <ul>
-                <h5 class="card-title"><%= space_hash[:space].name %></h5>
-                <p class="card-text"><%= space_hash[:space].description %></p>
-                <p class="card-text">Location: <%= space_hash[:space].location %>
-                  <br>Price: £<%= space_hash[:space].price %>
-                  <br>Host: <%= space_hash[:host_name] %></p>
-              </ul>
+  <% if !@requests_made.first %>
+    <div class="card mt-4 mb-4" style="margin: 0 auto; width: 30%;">
+      <div class="card-body text-center">
+        No listings currently available
+      </div>
+    </div>
+  <% else %>
+    <div id="master" style="width: 90%; margin: 0 auto;">
+      <div class="row">
+        <% @spaces.each do |space_hash| %>
+          <div class="col-sm-6">
+            <div class="card" style="margin-bottom: 30px;">
+              <div class="card-body">
+                <ul>
+                  <h5 class="card-title"><%= space_hash[:space].name %></h5>
+                  <p class="card-text"><%= space_hash[:space].description %></p>
+                  <p class="card-text">Location: <%= space_hash[:space].location %>
+                    <br>Price: £<%= space_hash[:space].price %>
+                    <br>Host: <%= space_hash[:host_name] %></p>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </main>
 <% if !@user %>
   <div>

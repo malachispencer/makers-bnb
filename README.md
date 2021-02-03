@@ -7,7 +7,7 @@ Website where users can list or rent spaces.
 |   | Technologies |
 |---|--------------|
 | **Front End** | HTML, CSS, Bootstrap, ERB |
-| **Back End** | Ruby, Sinatra |
+| **Back End** | Ruby, Sinatra, PostgreSQL |
 | **Testing** | Capybara, RSpec |
 
 ## Usage

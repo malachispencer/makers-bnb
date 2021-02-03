@@ -1,1 +1,0 @@
-ALTER TABLE bookings DROP COLUMN check_out;

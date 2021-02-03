@@ -4,7 +4,7 @@ require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
 require 'pg'
-require_relative './setup_test_database'
+require_relative './clean_test_database'
 require_relative '../lib/database_connection'
 require_relative '../lib/user'
 require_relative '../lib/booking'
@@ -25,6 +25,6 @@ SimpleCov.start
 
 RSpec.configure do |config|
   config.before(:each) do
-    setup_test_database
+    clean_test_database
   end
 end

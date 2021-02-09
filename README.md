@@ -15,6 +15,7 @@ Website where users can list or rent spaces.
 1) Visit the [MakersBnB website](https://makersbnb-ms.herokuapp.com/).
 2) Curious to see what's on MakersBnB before signing up? Check out the inventory of listings with the link below the sign up form.
 3) To make a booking request, or list your own space, sign up!
+4) For the best user experience, use MakersBnB in Chrome, Firefox or Edge!
 
 ## Setting Up The Database
 
